@@ -21,8 +21,7 @@ jobs:
 
     - name: Build IPA (unsigned)
       run: |
-        cd FarDriver
-        dotnet build -f net8.0-ios -c Release \
+        dotnet build FarDriver/FarDriver/FarDriver.csproj -f net8.0-ios -c Release \
           -p:BuildIpa=true \
           -p:CodesignKey="" \
           -p:CodesignProvision="" \
@@ -32,5 +31,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: FarDriver-unsigned-ipa
-        path: FarDriver/bin/Release/net8.0-ios/**/*.ipa
+        path: FarDriver/FarDriver/bin/Release/net8.0-ios/**/*.ipa
         retention-days: 30
