@@ -1,0 +1,36 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-14
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Install MAUI iOS workload
+      run: dotnet workload install maui-ios
+
+    - name: Build IPA (unsigned)
+      run: |
+        cd FarDriver
+        dotnet build -f net8.0-ios -c Release \
+          -p:BuildIpa=true \
+          -p:CodesignKey="" \
+          -p:CodesignProvision="" \
+          -p:EnableCodeSigning=false
+
+    - name: Upload IPA artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: FarDriver-unsigned-ipa
+        path: FarDriver/bin/Release/net8.0-ios/**/*.ipa
+        retention-days: 30
