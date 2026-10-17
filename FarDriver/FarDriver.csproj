@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-ios</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FarDriver</RootNamespace>
+    <AssemblyName>FarDriver</AssemblyName>
+    <Version>2.2.4</Version>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+    <ApplicationId>com.yuanqu.fardriver</ApplicationId>
+    <ApplicationDisplayVersion>2.2.4</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationTitle>远驱电控</ApplicationTitle>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
+    <PackageReference Include="Plugin.BLE" Version="2.2.0-pre2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#2196F3" />
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#2196F3" BaseSize="128,128" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:FarDriver.ViewModels"
+             x:Class="FarDriver.Views.MainPage"
+             Title="FarDriver">
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="远驱电控" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#2196F3" />
+            <Button Text="扫描控制器" Command="{Binding ScanCommand}" />
+            <ListView ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding}" Detail="BLE Device" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="连接" Command="{Binding ConnectCommand}" />
+                <Button Text="断开" Command="{Binding DisconnectCommand}" />
+                <Button Text="读参数" Command="{Binding ReadParametersCommand}" />
+            </StackLayout>
+            <Label Text="{Binding Status}" FontSize="14" TextColor="#4CAF50" />
+            <Editor Text="{Binding Log}" HeightRequest="200" IsReadOnly="True" FontSize="10" BackgroundColor="#F5F5F5" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
