@@ -8,15 +8,15 @@ jobs:
     runs-on: macos-14
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET 8
+    - name: Setup .NET 9
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '9.0.x'
     - name: Install MAUI iOS workload
       run: dotnet workload install maui-ios
     - name: Build IPA (unsigned)
       run: |
-        dotnet build FarDriver/FarDriver.csproj -f net8.0-ios -c Release \
+        dotnet build FarDriver/FarDriver.csproj -f net9.0-ios -c Release \
           -p:BuildIpa=true \
           -p:CodesignKey="" \
           -p:CodesignProvision="" \
@@ -25,5 +25,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: FarDriver-unsigned-ipa
-        path: FarDriver/FarDriver/bin/Release/net8.0-ios/**/*.ipa
+        path: FarDriver/bin/Release/net9.0-ios/**/*.ipa
         retention-days: 30
